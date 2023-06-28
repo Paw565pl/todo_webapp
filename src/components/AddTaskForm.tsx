@@ -13,9 +13,9 @@ const AddTaskForm = () => {
 
   return (
     <form onSubmit={(e) => handleSubmit(e)} className="w-full">
-      <h1 className="mb-1 text-2xl font-bold">
+      <h2 className="mb-1 text-xl font-bold">
         <label htmlFor="newItem">new item</label>
-      </h1>
+      </h2>
       <input
         ref={taskInput}
         type="text"
