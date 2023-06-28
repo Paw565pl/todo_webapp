@@ -18,7 +18,7 @@ interface Props {
 }
 
 export const TasksContextProvider = ({ children }: Props) => {
-  const { data, addData, removeData } = useLocalStorage("toDoList");
+  const { data, addData, removeData } = useLocalStorage<string>("toDoList");
 
   return (
     <tasksContext.Provider
