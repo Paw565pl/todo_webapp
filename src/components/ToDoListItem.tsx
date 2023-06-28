@@ -1,17 +1,33 @@
-import { useContext } from "react";
-import { tasksContext } from "../contexts/tasksContext";
+import { useContext, useState } from "react";
+import { Task, tasksContext } from "../contexts/tasksContext";
 
 interface Props {
-  task: string;
+  task: Task;
 }
 
 const ToDoListItem = ({ task }: Props) => {
-  const { removeTask } = useContext(tasksContext);
+  const { removeTask, addTask } = useContext(tasksContext);
+  const [completed, setCompleted] = useState(task.completed);
+
+  const handleDoneTask = () => {
+    addTask({
+      id: task.id,
+      completed: !task.completed,
+      name: task.name,
+    });
+    removeTask(task);
+    setCompleted(!task.completed);
+  };
 
   return (
     <li className="[&>*]:mr-3 mt-2 ml-4">
-      <input type="checkbox" className="scale-150" />
-      <span>{task}</span>
+      <input
+        type="checkbox"
+        className="scale-150"
+        onChange={handleDoneTask}
+        checked={task.completed}
+      />
+      <span className={completed ? "text-gray-400" : ""}>{task.name}</span>
       <button
         onClick={() => removeTask(task)}
         className="px-2 py-1 rounded-lg border-2 border-red-600 transition-all hover:bg-red-800"

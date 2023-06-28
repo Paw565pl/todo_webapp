@@ -1,13 +1,19 @@
 import { ReactNode, createContext } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 
-interface tasksContextType {
-  tasks: string[];
-  addTask: (task: string) => void;
-  removeTask: (task: string) => void;
+export interface Task {
+  id: number;
+  completed: boolean;
+  name: string;
 }
 
-export const tasksContext = createContext<tasksContextType>({
+interface TasksContextType {
+  tasks: Task[];
+  addTask: (task: Task) => void;
+  removeTask: (task: Task) => void;
+}
+
+export const tasksContext = createContext<TasksContextType>({
   tasks: [],
   addTask: () => {},
   removeTask: () => {},
@@ -18,7 +24,7 @@ interface Props {
 }
 
 export const TasksContextProvider = ({ children }: Props) => {
-  const { data, addData, removeData } = useLocalStorage<string>("toDoList");
+  const { data, addData, removeData } = useLocalStorage<Task>("toDoList");
 
   return (
     <tasksContext.Provider

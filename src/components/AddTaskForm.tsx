@@ -3,13 +3,16 @@ import { tasksContext } from "../contexts/tasksContext";
 
 const AddTaskForm = () => {
   const taskInput = useRef<HTMLInputElement>(null);
-  const { addTask } = useContext(tasksContext);
+  const { tasks, addTask } = useContext(tasksContext);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (taskInput.current?.value) {
-      // handleAddingTask(taskInput.current?.value);
-      addTask(taskInput.current?.value);
+      addTask({
+        id: tasks.length + 1,
+        completed: false,
+        name: taskInput.current?.value,
+      });
       taskInput.current.value = "";
     }
   };

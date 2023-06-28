@@ -9,9 +9,11 @@ const ToDoList = () => {
     <div className="mt-8">
       {tasks.length !== 0 && <h1 className="text-2xl">ToDo List</h1>}
       <ul>
-        {tasks.map((task) => (
-          <ToDoListItem task={task} key={task}></ToDoListItem>
-        ))}
+        {tasks
+          .sort((a, b) => a.id - b.id)
+          .map((task) => (
+            <ToDoListItem task={task} key={task.id}></ToDoListItem>
+          ))}
       </ul>
     </div>
   );
