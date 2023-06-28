@@ -1,14 +1,17 @@
 import ToDoListItem from "./ToDoListItem";
 
-const ToDoList = () => {
+interface Props {
+  values: string[];
+}
+
+const ToDoList = ({ values }: Props) => {
   return (
     <div className="mt-8">
       <h1 className="text-2xl">ToDo List</h1>
       <ul>
-        <ToDoListItem task="test"></ToDoListItem>
-        <ToDoListItem task="test"></ToDoListItem>
-        <ToDoListItem task="test"></ToDoListItem>
-        <ToDoListItem task="test"></ToDoListItem>
+        {values.map((value) => (
+          <ToDoListItem task={value}></ToDoListItem>
+        ))}
       </ul>
     </div>
   );
