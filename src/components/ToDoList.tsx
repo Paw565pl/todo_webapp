@@ -7,10 +7,10 @@ interface Props {
 const ToDoList = ({ values }: Props) => {
   return (
     <div className="mt-8">
-      <h1 className="text-2xl">ToDo List</h1>
+      {values.length !== 0 && <h1 className="text-2xl">ToDo List</h1>}
       <ul>
         {values.map((value) => (
-          <ToDoListItem task={value}></ToDoListItem>
+          <ToDoListItem task={value} key={value}></ToDoListItem>
         ))}
       </ul>
     </div>
