@@ -1,16 +1,15 @@
-import { useRef } from "react";
+import { useContext, useRef } from "react";
+import { tasksContext } from "../contexts/tasksContext";
 
-interface Props {
-  handleAddingTask: (task: string) => void;
-}
-
-const AddTaskForm = ({ handleAddingTask }: Props) => {
+const AddTaskForm = () => {
   const taskInput = useRef<HTMLInputElement>(null);
+  const { addTask } = useContext(tasksContext);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     if (taskInput.current?.value) {
-      handleAddingTask(taskInput.current?.value);
+      // handleAddingTask(taskInput.current?.value);
+      addTask(taskInput.current?.value);
       taskInput.current.value = "";
     }
   };

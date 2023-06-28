@@ -1,16 +1,16 @@
+import { useContext } from "react";
 import ToDoListItem from "./ToDoListItem";
+import { tasksContext } from "../contexts/tasksContext";
 
-interface Props {
-  values: string[];
-}
+const ToDoList = () => {
+  const { tasks } = useContext(tasksContext);
 
-const ToDoList = ({ values }: Props) => {
   return (
     <div className="mt-8">
-      {values.length !== 0 && <h1 className="text-2xl">ToDo List</h1>}
+      {tasks.length !== 0 && <h1 className="text-2xl">ToDo List</h1>}
       <ul>
-        {values.map((value) => (
-          <ToDoListItem task={value} key={value}></ToDoListItem>
+        {tasks.map((task) => (
+          <ToDoListItem task={task} key={task}></ToDoListItem>
         ))}
       </ul>
     </div>

@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
 
-const useLocalStorage = () => {
+const useLocalStorage = (storageName: string) => {
   const [data, setData] = useState<string[]>([]);
 
   useEffect(() => {
-    setData(JSON.parse(localStorage.getItem("toDoList") || "[]"));
+    setData(JSON.parse(localStorage.getItem(storageName) || "[]"));
   }, []);
 
   const addData = (value: string) => {
     setData((prev) => {
       const newArr = [...prev, value];
-      localStorage.setItem("toDoList", JSON.stringify(newArr));
+      localStorage.setItem(storageName, JSON.stringify(newArr));
       return newArr;
     });
   };
@@ -18,7 +18,7 @@ const useLocalStorage = () => {
   const removeData = (value: string) => {
     setData((prev) => {
       const filteredArr = prev.filter((el) => el !== value);
-      localStorage.setItem("toDoList", JSON.stringify(filteredArr));
+      localStorage.setItem(storageName, JSON.stringify(filteredArr));
       return filteredArr;
     });
   };
