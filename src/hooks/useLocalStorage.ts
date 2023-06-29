@@ -1,11 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 const useLocalStorage = <T>(storageName: string) => {
-  const [data, setData] = useState<T[]>([]);
-
-  useEffect(() => {
-    setData(JSON.parse(localStorage.getItem(storageName) || "[]"));
-  }, []);
+  const [data, setData] = useState<T[]>(
+    JSON.parse(localStorage.getItem(storageName) || "[]")
+  );
 
   const addData = (value: T) => {
     setData((prev) => {
