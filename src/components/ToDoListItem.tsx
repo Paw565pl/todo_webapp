@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { Task, tasksContext } from "../contexts/tasksContext";
 
 interface Props {
@@ -7,7 +7,6 @@ interface Props {
 
 const ToDoListItem = ({ task }: Props) => {
   const { removeTask, addTask } = useContext(tasksContext);
-  const [completed, setCompleted] = useState(task.completed);
 
   const handleDoneTask = () => {
     addTask({
@@ -16,7 +15,6 @@ const ToDoListItem = ({ task }: Props) => {
       name: task.name,
     });
     removeTask(task);
-    setCompleted(!task.completed);
   };
 
   return (
@@ -27,7 +25,7 @@ const ToDoListItem = ({ task }: Props) => {
         onChange={handleDoneTask}
         checked={task.completed}
       />
-      <span className={completed ? "text-gray-400" : ""}>{task.name}</span>
+      <span className={task.completed ? "text-gray-400" : ""}>{task.name}</span>
       <button
         onClick={() => removeTask(task)}
         className="px-2 py-1 rounded-lg border-2 border-red-600 transition-all hover:bg-red-800"
