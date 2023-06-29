@@ -1,9 +1,9 @@
 import { useContext } from "react";
 import ToDoListItem from "./ToDoListItem";
-import { tasksContext } from "../contexts/tasksContext";
+import { TasksContext } from "../contexts/TasksContext";
 
 const ToDoList = () => {
-  const { tasks } = useContext(tasksContext);
+  const { tasks } = useContext(TasksContext);
 
   return (
     <div className="mt-8">

@@ -1,6 +1,6 @@
 import AddTaskForm from "./components/AddTaskForm";
 import ToDoList from "./components/ToDoList";
-import { TasksContextProvider } from "./contexts/tasksContext";
+import { TasksContextProvider } from "./contexts/TasksContext";
 
 const App = () => {
   return (

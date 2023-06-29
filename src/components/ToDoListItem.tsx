@@ -1,27 +1,28 @@
 import { useContext } from "react";
-import { Task, tasksContext } from "../contexts/tasksContext";
+import { Task, TasksContext } from "../contexts/TasksContext";
 
 interface Props {
   task: Task;
 }
 
 const ToDoListItem = ({ task }: Props) => {
-  const { removeTask, addTask } = useContext(tasksContext);
+  const { tasks, removeTask, overrideTasks } = useContext(TasksContext);
 
   const handleDoneTask = () => {
-    addTask({
-      id: task.id,
-      completed: !task.completed,
-      name: task.name,
-    });
-    removeTask(task);
+    overrideTasks(
+      tasks.map((currTask) =>
+        currTask.id === task.id
+          ? { ...currTask, completed: !currTask.completed }
+          : currTask
+      )
+    );
   };
 
   return (
     <li className="[&>*]:mr-3 mt-2 ml-4">
       <input
         type="checkbox"
-        className="scale-150"
+        className="scale-150 hover:cursor-pointer"
         onChange={handleDoneTask}
         checked={task.completed}
       />

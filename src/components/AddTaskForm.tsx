@@ -1,9 +1,9 @@
 import { useContext, useRef } from "react";
-import { tasksContext } from "../contexts/tasksContext";
+import { TasksContext } from "../contexts/TasksContext";
 
 const AddTaskForm = () => {
   const taskInput = useRef<HTMLInputElement>(null);
-  const { tasks, addTask } = useContext(tasksContext);
+  const { tasks, addTask } = useContext(TasksContext);
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();

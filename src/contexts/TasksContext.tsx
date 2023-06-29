@@ -11,12 +11,14 @@ interface TasksContextType {
   tasks: Task[];
   addTask: (task: Task) => void;
   removeTask: (task: Task) => void;
+  overrideTasks: (tasksArray: Task[]) => void;
 }
 
-export const tasksContext = createContext<TasksContextType>({
+export const TasksContext = createContext<TasksContextType>({
   tasks: [],
   addTask: () => {},
   removeTask: () => {},
+  overrideTasks: () => {},
 });
 
 interface Props {
@@ -24,13 +26,19 @@ interface Props {
 }
 
 export const TasksContextProvider = ({ children }: Props) => {
-  const { data, addData, removeData } = useLocalStorage<Task>("toDoList");
+  const { data, addData, removeData, overrideData } =
+    useLocalStorage<Task>("toDoList");
 
   return (
-    <tasksContext.Provider
-      value={{ tasks: data, addTask: addData, removeTask: removeData }}
+    <TasksContext.Provider
+      value={{
+        tasks: data,
+        addTask: addData,
+        removeTask: removeData,
+        overrideTasks: overrideData,
+      }}
     >
       {children}
-    </tasksContext.Provider>
+    </TasksContext.Provider>
   );
 };

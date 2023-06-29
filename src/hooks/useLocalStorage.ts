@@ -23,7 +23,12 @@ const useLocalStorage = <T>(storageName: string) => {
     });
   };
 
-  return { data, addData, removeData };
+  const overrideData = (value: T[]) => {
+    localStorage.setItem(storageName, JSON.stringify(value));
+    setData(value);
+  };
+
+  return { data, addData, removeData, overrideData };
 };
 
 export default useLocalStorage;
